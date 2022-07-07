@@ -27,13 +27,13 @@ public class GridCell
     public void SetAsObstacle()
     {
         IsWalkable = false;
-        visuals.SetAsObstacle();
+        visuals.SetObstacleVisuals();
     }
     
     public void SetAsWalkable()
     {
         IsWalkable = true;
-        visuals.SetAsWalkable();
+        visuals.SetWalkableVisuals();
     }
 
     public void SetDefaultCostValues()
@@ -54,6 +54,8 @@ public class GridCell
 
 public struct CellData
 {
+    public static CellData None => default(CellData);
+    
     public Vector2Int mapPos;
     public Vector3 worldPos;
 }

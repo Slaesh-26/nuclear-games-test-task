@@ -2,14 +2,13 @@
 
 public class GridInteractor : MonoBehaviour
 {
-    public CellData CurrentCell { get; private set; }
+    public CellData SelectedCell { get; private set; }
     
     [SerializeField] private GameObject marker;
     
     private bool isOrthographic;
     private GridMap grid;
     private Camera mainCamera;
-    private CellData lastSelectedCell;
     private float gridMapWorldHeight;
     
     public void Init(float gridMapWorldHeight, GridMap grid)
@@ -39,13 +38,8 @@ public class GridInteractor : MonoBehaviour
 
         Vector3 mouseGridWorldPos = mousePos + n * mouseRay;
         CellData currentSelectedCell = grid.GetCellData(mouseGridWorldPos);
-        CurrentCell = currentSelectedCell;
+        SelectedCell = currentSelectedCell;
 
         marker.transform.position = currentSelectedCell.worldPos;
-
-        if (!lastSelectedCell.Equals(currentSelectedCell))
-        {
-            lastSelectedCell = currentSelectedCell;
-        }
     }
 }

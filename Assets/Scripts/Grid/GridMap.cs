@@ -34,6 +34,11 @@ public class GridMap : MonoBehaviour
         gridInteractor.Init(transform.position.y, this);
     }
 
+    public void SetSelectedCellObstacle()
+    {
+        SetObstacle(gridInteractor.SelectedCell.mapPos);
+    }
+
     public void SetObstacle(Vector2Int cellPos)
     {
         if (TryGetCell(cellPos, out GridCell cell))

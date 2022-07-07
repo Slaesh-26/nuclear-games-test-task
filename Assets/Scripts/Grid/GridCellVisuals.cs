@@ -17,13 +17,13 @@ public class GridCellVisuals : MonoBehaviour
         propertyBlock = new MaterialPropertyBlock();
     }
 
-    public void SetAsObstacle()
+    public void SetObstacleVisuals()
     {
         propertyBlock.SetColor(colorPropertyKey, obstacleColor);
         meshRenderer.SetPropertyBlock(propertyBlock);
     }
     
-    public void SetAsWalkable()
+    public void SetWalkableVisuals()
     {
         propertyBlock.SetColor(colorPropertyKey, defaultColor);
         meshRenderer.SetPropertyBlock(propertyBlock);

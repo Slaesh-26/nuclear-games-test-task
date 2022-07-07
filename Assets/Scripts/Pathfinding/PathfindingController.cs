@@ -38,24 +38,24 @@ public class PathfindingController : MonoBehaviour
 
     private void OnChoosePath()
     {
-        SetPath(gridInteractor.CurrentCell);
+        SetPath(gridInteractor.SelectedCell);
     }
 
     private void OnPlaceObstacle()
     {
-        gridMap.SetObstacle(gridInteractor.CurrentCell.mapPos);
+        gridMap.SetSelectedCellObstacle();
     }
 
     private void SetPath(CellData data)
     {
-        if (previousClickedCell.Equals(default(CellData)))
+        if (previousClickedCell.Equals(CellData.None))
         {
             previousClickedCell = data;
         }
         else
         {
             FindAndDrawPath(previousClickedCell.mapPos, data.mapPos);
-            previousClickedCell = default(CellData);
+            previousClickedCell = CellData.None;
         }
     }
 }

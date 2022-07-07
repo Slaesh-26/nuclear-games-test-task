@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdbbe3868270284ca50777279a78af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 20, y: 25}
+  size: {x: 25, y: 25}
   cellSize: 1
   gridInteractor: {fileID: 538230602}
   gridCellSpawner: {fileID: 538230606}
