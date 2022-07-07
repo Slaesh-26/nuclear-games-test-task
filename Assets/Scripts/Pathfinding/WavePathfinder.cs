@@ -131,6 +131,7 @@ public class WavePathfinder : Pathfinder
                 {
                     continue;
                 }
+                
                 if (neighbour.WaveCost < 0)
                 {
                     continue;

@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEditor;
 using UnityEngine;
 
 public class GridMap : MonoBehaviour
@@ -15,11 +14,11 @@ public class GridMap : MonoBehaviour
 
     public void Init()
     {
-        cells = new GridCell[size.y, size.x];
+        cells = new GridCell[size.x, size.y];
 
-        for (int i = 0; i < size.y; i++)
+        for (int i = 0; i < size.x; i++)
         {
-            for (int j = 0; j < size.x; j++)
+            for (int j = 0; j < size.y; j++)
             {
                 Vector2Int cellMapPos = new Vector2Int(i, j);
                 Vector3 cellWorldPos = GetCellWorldPos(cellMapPos);
@@ -50,7 +49,7 @@ public class GridMap : MonoBehaviour
             cell = cells[mapPos.x, mapPos.y];
             return true;
         }
-        catch (IndexOutOfRangeException e)
+        catch (IndexOutOfRangeException)
         {
             cell = null;
             return false;
@@ -60,7 +59,16 @@ public class GridMap : MonoBehaviour
     public CellData GetCellData(Vector3 worldPos)
     {
         Vector2Int mapPos = GetMapFromWorldPos(worldPos);
-        return cells[mapPos.x, mapPos.y].GetCellData();
+        
+        try
+        {
+            return cells[mapPos.x, mapPos.y].GetCellData();
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Debug.LogError($"Index out of bounds: {mapPos}");
+            return default(CellData);
+        }
     }
 
     private Vector2Int GetMapFromWorldPos(Vector3 worldPos)
@@ -85,9 +93,9 @@ public class GridMap : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < size.y; i++)
+        for (int i = 0; i < size.x; i++)
         {
-            for (int j = 0; j < size.x; j++)
+            for (int j = 0; j < size.y; j++)
             {
                 Vector2Int cellMapPos = new Vector2Int(i, j);
                 Vector3 cellWorldPos = GetCellWorldPos(cellMapPos);
